@@ -7,7 +7,7 @@ on:
   push:
     #specify branches that we want to run this CI proccess
     branches:
-      - master
+      - Master
 #a complex project mght have multiple jobs. With it project we just have a single job which is used to compile our .net app
 jobs: 
   #give the job a name
