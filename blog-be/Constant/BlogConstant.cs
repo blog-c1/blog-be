@@ -2,6 +2,8 @@
 {
     public class BlogConstant
     {
-        public const string GetListUser = "select UserId, Username, Email from \"USER\"";
+        public const string Query = "SELECT * FROM ";
+        
+        public const string GetListUser = Query+"GetAllUser()";
     }
 }
