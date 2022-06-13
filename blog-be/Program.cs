@@ -28,4 +28,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+#if DEBUG
+{
+    app.Run();
+}
+#endif
+
 app.Run("http://*:5000");
