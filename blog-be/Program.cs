@@ -5,10 +5,9 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddScoped<BlogRepository, BlogRepositoryImp>();
+builder.Services.AddScoped<IBlogRepository, BlogRepositoryImp>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 
 builder.Services.AddDbContext<BlogContext>(options =>
 {

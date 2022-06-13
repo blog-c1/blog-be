@@ -1,22 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace blog_be.Model
+namespace blog_be.Model;
+
+public class BlogContext : DbContext
 {
-    public partial class BlogContext : DbContext
+    public BlogContext(DbContextOptions<BlogContext> options) : base(options)
     {
+    }
 
-        public BlogContext(DbContextOptions<BlogContext> options): base(options)
-        {
-        }
+    public virtual DbSet<User> Users { get; set; }
 
-        public virtual DbSet<USER> USERs { get; set; } = null!;
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            OnModelCreatingPartial(modelBuilder);
-        }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
     }
 }
-

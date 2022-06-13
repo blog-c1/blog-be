@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace blog_be.Reponsitory
 {
-    public interface BlogRepository
+    public interface IBlogRepository
     {
-        Task<IEnumerable<USER>> GetListUser();
+        Task<IEnumerable<User>> GetListUser();
     }
 
-    public class BlogRepositoryImp : BlogRepository
+    public class BlogRepositoryImp : IBlogRepository
     {
         private readonly BlogContext blogContext;
 
@@ -18,8 +18,8 @@ namespace blog_be.Reponsitory
             this.blogContext = blogContext;
         }
 
-        public async Task<IEnumerable<USER>> GetListUser()
-            => await blogContext.USERs
+        public async Task<IEnumerable<User>> GetListUser()
+            => await blogContext.Users
                 .FromSqlRaw(BlogConstant.GetListUser)
                 .ToListAsync();
     }
