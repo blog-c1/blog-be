@@ -1,9 +1,8 @@
-﻿namespace blog_be.Constant
-{
-    public static class BlogConstant
-    {
-        public const string Query = "SELECT * FROM ";
+﻿namespace blog_be.Constant;
 
-        public const string GetListUser = Query + "GetAllUser()";
-    }
+public static class BlogConstant
+{
+    public const string Query = "SELECT * FROM ";
+
+    public const string GetListUser = Query + "GetAllUser()";
 }
