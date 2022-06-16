@@ -2,12 +2,12 @@
 {
     using blog_be.Reponsitory;
     using Microsoft.AspNetCore.Mvc;
-    
-    public class BlogController: Controller
-    {
-        private readonly BlogRepository reponsitory;
 
-        public BlogController(BlogRepository reponsitory)
+    public class BlogController : Controller
+    {
+        private readonly IBlogRepository reponsitory;
+
+        public BlogController(IBlogRepository reponsitory)
         {
             this.reponsitory = reponsitory;
         }
