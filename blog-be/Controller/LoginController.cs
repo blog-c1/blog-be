@@ -1,7 +1,5 @@
-﻿using blog_be.Model;
+﻿using blog_be.Model.Login;
 using blog_be.Reponsitory.Login;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace blog_be.Controller
@@ -16,24 +14,16 @@ namespace blog_be.Controller
         }
 
         [HttpPost("login")]
-        public IActionResult Authenticate(User usersdata)
+        public async Task<IActionResult> Authenticate(UserLoginInfo userLoginInfo)
         {
-            var token = _iLoginRepository.Authenticate(usersdata);
+            var token = await _iLoginRepository.Authenticate(userLoginInfo);
 
-            if (token == null)
+            if (token is null)
             {
                 return Unauthorized();
             }
 
             return Ok(token);
-        }
-
-        [HttpGet("users")]
-        [Authorize]
-        public async Task<IActionResult> GetListUsers()
-        {
-            var user = await _iLoginRepository.GetListUserAsync();
-            return Ok(user) ;
         }
     }
 }

@@ -1,17 +1,17 @@
-﻿using blog_be.JWTSecurity;
-using blog_be.Model;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
+﻿using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
+using blog_be.JWTSecurity;
+using blog_be.Model;
+using blog_be.Model.Login;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace blog_be.Reponsitory.Login
 {
     public interface ILoginRepository
     {
-        Tokens Authenticate(User user);
-        Task<IEnumerable<User>> GetListUserAsync();
+        Task<Tokens> Authenticate(UserLoginInfo user);
     }
 
     public class LoginRepository : ILoginRepository
@@ -24,11 +24,11 @@ namespace blog_be.Reponsitory.Login
             this.blogContext = blogContext;
         }
 
-        public Tokens Authenticate(User user)
+        public async Task<Tokens> Authenticate(UserLoginInfo user)
         {
-            var checkUser = blogContext.Users.Count(u => u.UserName.Equals(user.UserName) && u.Pwd.Equals(user.Pwd));
+            var users = await blogContext.UserLoginInfos.FromSqlInterpolated($"SELECT * FROM LOGIN_GETUSERINFO({user.UserName}, {user.Pwd})").ToListAsync();
 
-            if (checkUser > 0)
+            if (users.Count > 0)
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var tokenKey = Encoding.UTF8.GetBytes(iconfiguration["JWT:Key"]);
@@ -36,7 +36,7 @@ namespace blog_be.Reponsitory.Login
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim(ClaimTypes.Name, user.UserName)
+                        new Claim(ClaimTypes.Role, users[0].Role)
                     }),
                     Expires = DateTime.UtcNow.AddMinutes(10),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
@@ -47,7 +47,5 @@ namespace blog_be.Reponsitory.Login
 
             return null;
         }
-
-        public async Task<IEnumerable<User>> GetListUserAsync() => await blogContext.Users.Where(u => u.DelFlg == true).ToListAsync();
     }
 }
