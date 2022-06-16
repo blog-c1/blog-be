@@ -1,16 +1,24 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using blog_be.Model.Login;
+using blog_be.Model.User;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace blog_be.Model;
-
-public class BlogContext : DbContext
+namespace blog_be.Model
 {
-    public BlogContext(DbContextOptions<BlogContext> options) : base(options)
+    public partial class BlogContext : DbContext
     {
-    }
+        public BlogContext()
+        {
+        }
 
-    public virtual DbSet<User> Users { get; set; }
+        public BlogContext(DbContextOptions<BlogContext> options)
+            : base(options)
+        {
+        }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
+        public virtual DbSet<UserLoginInfo> UserLoginInfos { get; set; }
+        public virtual DbSet<ListUser> ListUsers { get; set; }
     }
 }
