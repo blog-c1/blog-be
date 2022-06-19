@@ -1,4 +1,4 @@
-﻿namespace blog_be.PostManament.Model;
+﻿namespace blog_be.PostManagement.Model;
 using Microsoft.EntityFrameworkCore;
 
 [Keyless]

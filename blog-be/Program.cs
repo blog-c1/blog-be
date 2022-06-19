@@ -1,8 +1,8 @@
 using blog_be.Data;
 using blog_be.Login;
 using blog_be.Login.Services;
-using blog_be.PostManament;
-using blog_be.PostManament.Services;
+using blog_be.PostManagement;
+using blog_be.PostManagement.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
