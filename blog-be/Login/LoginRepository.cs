@@ -12,11 +12,9 @@ public interface ILoginRepository
 public class LoginRepository : ILoginRepository
 {
     private readonly BlogContext blogContext;
-    private readonly IConfiguration iconfiguration;
 
-    public LoginRepository(IConfiguration iconfiguration, BlogContext blogContext)
+    public LoginRepository( BlogContext blogContext)
     {
-        this.iconfiguration = iconfiguration;
         this.blogContext = blogContext;
     }
 
