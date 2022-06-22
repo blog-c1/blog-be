@@ -1,7 +1,6 @@
 using blog_be.Data;
 using blog_be.Login;
 using blog_be.Login.Services;
-using blog_be.PostManagement;
 using blog_be.PostManagement.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -33,8 +32,8 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddControllers();
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();
 builder.Services.AddScoped<ILoginService, LoginService>();
-builder.Services.AddScoped<IPostManamentRepository, PostManamentRepositoryImp>();
-builder.Services.AddScoped<IGetPostInfoService, GetPostInfoServiceImp>();
+builder.Services.AddScoped<IPostRepository, PostRepository>();
+builder.Services.AddScoped<IPostService, PostService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
