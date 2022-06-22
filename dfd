@@ -1,0 +1,32 @@
+[33m742f319[m[33m ([m[1;36mHEAD -> [m[1;32mMaster[m[33m, [m[1;31morigin/feature/004-post-manament[m[33m, [m[1;32mfeature/004-post-manament[m[33m)[m Implement create post feature - V1
+[33m38e968b[m feat: get post detail
+[33mba64dc5[m feat: get all post
+[33mdba32f9[m[33m ([m[1;31morigin/Master[m[33m, [m[1;31morigin/HEAD[m[33m)[m feat: structure folder
+[33mbd3e07f[m Merge branch 'feature/003-login' into Master
+[33m9aa5d6e[m implement login feature v1
+[33m1c50c29[m Implement login feture
+[33m1495023[m Implement login
+[33m1c6a1c6[m implement login
+[33m3ef39f5[m Merge branch '001-config-dockerfile' into Master
+[33m1fd84fd[m feat: if debug start for dev
+[33m483163c[m feat: add dockerignore
+[33macbf859[m feat: docker file
+[33mda359d9[m fix: sonar
+[33m66eeb80[m Merge branch '000-connect-db' into Master
+[33me2c1ade[m feat: connect store procedure
+[33mf2d4582[m test: connect postgresql
+[33mdd5467f[m Fix #2
+[33m33e9362[m Adding SonarQube action
+[33md8cc2e0[m Fix unit test, resolves #1
+[33m92ba957[m Test fail checking
+[33m4a9ee92[m Create readme.md
+[33m3bb6b3a[m Add test action
+[33me958933[m test ci/d
+[33me15f312[m Switch branch filter
+[33m21c0169[m test cicd
+[33m01d3048[m Change workflows file
+[33m7df98ed[m Create be-cicd.yml
+[33mf0518cd[m Fix config cicd
+[33m60fc343[m Setup cicd
+[33m48cd2fc[m feat: init project
+[33m8c79601[m feat: init project
