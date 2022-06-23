@@ -1,6 +1,5 @@
 using blog_be.Data;
-using blog_be.Login;
-using blog_be.Login.Services;
+using blog_be.Extension;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -29,8 +28,8 @@ builder.Services.AddAuthentication(x =>
 });
 
 builder.Services.AddControllers();
-builder.Services.AddScoped<ILoginRepository, LoginRepository>();
-builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddLoginCollection();
+builder.Services.AddPostManagementCollection();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -60,3 +59,5 @@ app.Run();
 #endif
 
 app.Run("http://*:5000");
+
+

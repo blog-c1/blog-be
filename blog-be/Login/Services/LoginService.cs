@@ -11,13 +11,13 @@ public interface ILoginService
     Task<Tokens> Authenticate(UserRequest user);
 }
 
-public class LoginService : ILoginService
+public class LoginServiceImp : ILoginService
 {
     private readonly ILoginRepository loginRepository;
 
     private readonly IConfiguration configuration;
 
-    public LoginService(IConfiguration configuration, ILoginRepository loginRepository)
+    public LoginServiceImp(IConfiguration configuration, ILoginRepository loginRepository)
     {
         this.configuration = configuration;
         this.loginRepository = loginRepository;

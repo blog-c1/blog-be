@@ -9,14 +9,12 @@ public interface ILoginRepository
     Task<UserLoginInfo> GetUserInfo(UserRequest user);
 }
 
-public class LoginRepository : ILoginRepository
+public class LoginRepositoryImp : ILoginRepository
 {
     private readonly BlogContext blogContext;
-    private readonly IConfiguration iconfiguration;
 
-    public LoginRepository(IConfiguration iconfiguration, BlogContext blogContext)
+    public LoginRepositoryImp( BlogContext blogContext)
     {
-        this.iconfiguration = iconfiguration;
         this.blogContext = blogContext;
     }
 
