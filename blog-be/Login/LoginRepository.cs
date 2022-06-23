@@ -9,11 +9,11 @@ public interface ILoginRepository
     Task<UserLoginInfo> GetUserInfo(UserRequest user);
 }
 
-public class LoginRepository : ILoginRepository
+public class LoginRepositoryImp : ILoginRepository
 {
     private readonly BlogContext blogContext;
 
-    public LoginRepository( BlogContext blogContext)
+    public LoginRepositoryImp( BlogContext blogContext)
     {
         this.blogContext = blogContext;
     }

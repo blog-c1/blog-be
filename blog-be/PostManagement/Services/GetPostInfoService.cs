@@ -2,28 +2,20 @@
 
 namespace blog_be.PostManagement.Services
 {
-    public interface IPostService
+    public interface IGetPostInfoService
     {
-        Task<string> CreatePost(PostCreation post);
-
         Task<List<PostInfo>> GetAllPosts();
 
         Task<PostDetail> GetPostDetail(int postId);
     }
 
-    public class PostService : IPostService
+    public class GetPostInfoServiceImp : IGetPostInfoService
     {
-        private readonly IPostRepository postRepository;
+        private readonly IPostManagementRepository postRepository;
 
-        public PostService(IPostRepository postRepository)
+        public GetPostInfoServiceImp(IPostManagementRepository postRepository)
         {
             this.postRepository = postRepository;
-        }
-    
-        public async Task<string> CreatePost(PostCreation post)
-        {
-            var rs = await postRepository.CreatePostAsync(post);
-            return rs;
         }
 
         public async Task<List<PostInfo>> GetAllPosts()

@@ -7,27 +7,30 @@ namespace blog_be.PostManagement
 {
     [ApiController]
     [Route("[controller]")]
-    public class PostController: ControllerBase
+    public class PostManagementController : ControllerBase
     {
-        private readonly IPostService postService;
-        public PostController (IPostService postService)
+        private readonly IGetPostInfoService getPostInfoService;
+        private readonly ICreatePostService createPostService;
+
+        public PostManagementController(IGetPostInfoService postService, ICreatePostService createPostService)
         {
-            this.postService = postService;
+            this.getPostInfoService = postService;
+            this.createPostService = createPostService;
         }
 
-        [HttpGet ("get-all")]  
+        [HttpGet("get-all")]
         public async Task<IActionResult> GetAllPosts()
-          => Ok( await postService.GetAllPosts());
+          => Ok(await getPostInfoService.GetAllPosts());
 
         [HttpGet("get-detail/{postId}")]
         public async Task<IActionResult> GetPostDetail(int postId)
-        => Ok(await postService.GetPostDetail(postId));
+        => Ok(await getPostInfoService.GetPostDetail(postId));
 
         [HttpPost("create-post")]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> CreatePost(PostCreation post)
         {
-            var result = await postService.CreatePost(post);
+            var result = await createPostService.CreatePost(post);
             return Ok(result);
         }
     }
