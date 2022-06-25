@@ -28,7 +28,7 @@ namespace blog_be.PostManagement
 
         [HttpPost("api/create-post")]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> CreatePost(PostCreation post)
+        public async Task<IActionResult> CreatePost([FromBody] PostCreation post)
         {
             var result = await createPostService.CreatePost(post);
             return Ok(result);

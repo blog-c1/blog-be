@@ -25,24 +25,26 @@ public class LoginServiceImp : ILoginService
 
     public async Task<Tokens> Authenticate(UserRequest user)
     {
-        var userInfo = await loginRepository.GetUserInfo(user);
+        var userLoginInfo = await loginRepository.GetUserInfo(user);
 
-        if (userInfo is null)
+        if (userLoginInfo is null)
         {
             return null;
         }
+
         var tokenHandler = new JwtSecurityTokenHandler();
         var tokenKey = Encoding.UTF8.GetBytes(configuration["JWT:Key"]);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new Claim[]
             {
-                        new Claim(ClaimTypes.Role, userInfo.Role)
+                        new Claim(ClaimTypes.Name, userLoginInfo.UserName),
+                        new Claim(ClaimTypes.Role, userLoginInfo.Role)
             }),
             Expires = DateTime.UtcNow.AddMinutes(10),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
-        return new Tokens { Token = tokenHandler.WriteToken(token) };
+        return new Tokens { Token = tokenHandler.WriteToken(token), RefreshToken = tokenDescriptor.Expires.ToString()};
     }
 }
