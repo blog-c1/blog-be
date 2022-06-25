@@ -18,15 +18,15 @@ namespace blog_be.PostManagement
             this.createPostService = createPostService;
         }
 
-        [HttpGet("get-all")]
+        [HttpGet("api/get-all")]
         public async Task<IActionResult> GetAllPosts()
           => Ok(await getPostInfoService.GetAllPosts());
 
-        [HttpGet("get-detail/{postId}")]
+        [HttpGet("api/get-detail/{postId}")]
         public async Task<IActionResult> GetPostDetail(int postId)
         => Ok(await getPostInfoService.GetPostDetail(postId));
 
-        [HttpPost("create-post")]
+        [HttpPost("api/create-post")]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> CreatePost(PostCreation post)
         {

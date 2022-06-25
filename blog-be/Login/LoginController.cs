@@ -13,7 +13,7 @@ public class LoginController : ControllerBase
         this.loginService = loginService;
     }
 
-    [HttpPost("login")]
+    [HttpPost("api/login")]
     public async Task<IActionResult> Authenticate(UserRequest userRequest)
     {
         var token = await loginService.Authenticate(userRequest);
