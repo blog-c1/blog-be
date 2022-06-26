@@ -45,6 +45,6 @@ public class LoginServiceImp : ILoginService
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
-        return new Tokens { Token = tokenHandler.WriteToken(token), RefreshToken = tokenDescriptor.Expires.ToString()};
+        return new Tokens { Token = tokenHandler.WriteToken(token), ExpiredAt = tokenDescriptor.Expires.ToString()};
     }
 }

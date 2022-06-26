@@ -20,10 +20,10 @@ public class LoginController : ControllerBase
     public async Task<IActionResult> Authenticate([FromBody] UserRequest userRequest)
     {
         var token = await loginService.Authenticate(userRequest);
-        return token is null ? Unauthorized(new { messageError = "User name or password is not exist!" }) : Ok(token);
+        return token is null ? Unauthorized(new { messageError = "Username or password is not correct!" }) : Ok(token);
     }
 
     [HttpGet("api/profile")]
     [Authorize(Roles = "admin")]
-    public async Task<IActionResult> GetUserName() => await Task.Run(() => Ok(new {userName = this.User.Identity.Name}));
+    public async Task<IActionResult> GetUserName() => await Task.Run(() => Ok(new { username = this.User.Identity.Name}));
 }
